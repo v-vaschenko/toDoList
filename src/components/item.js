@@ -9,24 +9,26 @@ export class Item extends React.Component{
                       done : 'itemTextDone'
         };
         this.checkBox = this.checkBox.bind(this);
+        this.buttonClick = this.buttonClick.bind(this);
     }
     checkBox(){
         this.setState({checkbox : !this.state.checkbox});
     }
-    buttonDelete(){
-
+    buttonClick(){
+    this.props.func(this.props.id);
     }
     render() {
         let data = this.props.data.text;
         return (
-                <p className={ this.state.checkbox ? this.state.done : this.state.undone}>
+                <p className={ this.state.checkbox ? this.state.done : this.state.undone}
+                >
                     {data}
                 <input type = 'checkbox'
                        onChange={this.checkBox}
                 />
                     <input type = 'button'
                            className={'deleteButton'}
-                           onChange={this.buttonDelete}
+                           onClick={this.buttonClick}
                     />
                 </p>
         );

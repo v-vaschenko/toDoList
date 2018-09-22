@@ -10,17 +10,22 @@ let todoList = [
     { text: 2222222222222},
     { text: 3333333333333}
 ];
-class App extends Component {
+export class App extends Component {
         constructor(props){
         super(props);
         this.state = {list:todoList};
         this.inputForm = this.inputForm.bind(this);
+        this.deleteFunction = this.deleteFunction.bind(this);
     }
     inputForm(){
             let input = {text: arguments[0]};
             todoList.push(input);
             this.setState({list: todoList});
 }
+    deleteFunction (){
+            delete todoList[arguments[0]];
+            this.setState ({list : todoList});
+    }
 
   render() {
     return (
@@ -29,7 +34,9 @@ class App extends Component {
             <h1> ToDo list </h1>
         </div>
           <div className={'panel-body'}>
-              <List data = {this.state.list}/>
+              <List data = {this.state.list}
+                    delFunc = {this.deleteFunction}
+              />
               <Form inputFunc = {this.inputForm}/>
           </div>
       </div>
