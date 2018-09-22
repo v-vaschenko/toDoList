@@ -23,12 +23,12 @@ export class Form extends React.Component{
 
     render() {
         return (
-            <form className = { 'form' }
+            <form className = { 'form-group' }
                   onSubmit={this.handleSubmit}>
 
                 <label>
                     <input type = "text"
-                           className={'textArea'}
+                           className={'form-control'}
                            value = {this.state.value}
                            onChange = {this.handleChange}
                            placeholder = {'Enter your ToDo'}
@@ -36,6 +36,7 @@ export class Form extends React.Component{
                 </label>
 
                 <input type = "submit"
+                       className={'btn btn-primary'}
                        value = "Submit"
                        disabled={!this.state.value}
                 />

@@ -5,7 +5,11 @@ import {List} from './containers/listt';
 import {Form} from './components/form';
 import {Item} from "./components/item";
 import * as ReactDOM from "react-dom";
-let todoList = [];
+let todoList = [
+    { text: 1111111111111},
+    { text: 1111111111111},
+    { text: 1111111111111}
+];
 class App extends Component {
     constructor(props){
         super(props);
@@ -20,9 +24,9 @@ class App extends Component {
 
   render() {
     return (
-      <div className={'app container-fluid'}>
-        <div className={'panel-heading'}>
-            <h1>ToDo list</h1>
+      <div className = {'app container-fluid'}>
+        <div className = {'panel-heading'}>
+            <h1> ToDo list </h1>
         </div>
           <div className={'panel-body'}>
               <List data = {this.state.list}/>

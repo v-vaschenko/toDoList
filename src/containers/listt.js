@@ -13,7 +13,8 @@ export class List extends React.Component {
         if (this.props.data.length > 0) {
             toDOs = data.map(function (item, index) {
                 return (
-                    <div key={index}>
+                    <div className={'item'}
+                         key={index}>
                         <Item data={item}/>
                     </div>
                 );
@@ -27,7 +28,7 @@ export class List extends React.Component {
             );
         }
         return(
-            <div>
+            <div className={'list'}>
                 {toDOs}
             </div>
         )

@@ -16,15 +16,37 @@ body {
   text-align: center;
 }
 .panel-body {
-  padding: 0px;
   min-height: 300px;
-  width: 90%;
-  margin-left: auto;
-  margin-right: auto;
+  width: 100%;
   text-align: center;
+  border: 3px solid #428bca;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  position: relative;
+  padding-top: 30px;
 }
 .container-fluid{
   border: #428bca;
   border-width: 10px;
   border-radius: 10px;
+}
+.list{
+  min-height: 250px;
+}
+.item:hover{
+  background-color: #d1e0e0;
+}
+.item{
+  width: 90%;
+  margin-right: auto;
+  margin-left: auto;
+}
+.btn{
+  margin-left: 10px;
+}
+.itemText{
+  color: black;
+}
+.itemTextDone{
+  text-decoration: line-through;
 }
