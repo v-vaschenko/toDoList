@@ -12,13 +12,13 @@ export class Form extends React.Component{
 
     handleChange(event) {
         this.setState({value: event.target.value});
+        event.preventDefault();
     }
 
     handleSubmit(event) {
-        alert('A name was submitted: ' + this.state.value);
-        event.preventDefault();
+        this.props.inputFunc(this.state.value);
         this.setState ({value : ''});
-        return false;
+        event.preventDefault();
     }
 
     render() {
@@ -28,6 +28,7 @@ export class Form extends React.Component{
 
                 <label>
                     <input type = "text"
+                           className={'textArea'}
                            value = {this.state.value}
                            onChange = {this.handleChange}
                            placeholder = {'Enter your ToDo'}

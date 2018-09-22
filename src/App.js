@@ -5,17 +5,18 @@ import {List} from './containers/listt';
 import {Form} from './components/form';
 import {Item} from "./components/item";
 import * as ReactDOM from "react-dom";
-let todoList = [
-    { text: 1111111111111 },
-    { text: 2222222222222 },
-    { text: 3333333333333 },
-    { text: 4444444444444 }
-];
+let todoList = [];
 class App extends Component {
     constructor(props){
         super(props);
-        this.state = {list: todoList};
+        this.state = {list:todoList};
+        this.inputForm = this.inputForm.bind(this);
     }
+    inputForm(){
+            let input = {text: arguments[0]};
+            todoList.push(input);
+            this.setState({list: todoList});
+}
 
   render() {
     return (
@@ -25,7 +26,7 @@ class App extends Component {
         </div>
           <div className={'panel-body'}>
               <List data = {this.state.list}/>
-              <Form/>
+              <Form inputFunc = {this.inputForm}/>
           </div>
       </div>
     );
