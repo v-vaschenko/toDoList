@@ -50,3 +50,9 @@ body {
 .itemTextDone{
   text-decoration: line-through;
 }
+.deleteButton{
+  width: 16px;
+  height: 16px;
+  background: url("./img/deleteIcon.png");
+  border: none;
+}

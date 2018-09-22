@@ -7,11 +7,11 @@ import {Item} from "./components/item";
 import * as ReactDOM from "react-dom";
 let todoList = [
     { text: 1111111111111},
-    { text: 1111111111111},
-    { text: 1111111111111}
+    { text: 2222222222222},
+    { text: 3333333333333}
 ];
 class App extends Component {
-    constructor(props){
+        constructor(props){
         super(props);
         this.state = {list:todoList};
         this.inputForm = this.inputForm.bind(this);

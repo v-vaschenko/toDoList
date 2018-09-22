@@ -13,6 +13,9 @@ export class Item extends React.Component{
     checkBox(){
         this.setState({checkbox : !this.state.checkbox});
     }
+    buttonDelete(){
+
+    }
     render() {
         let data = this.props.data.text;
         return (
@@ -21,6 +24,10 @@ export class Item extends React.Component{
                 <input type = 'checkbox'
                        onChange={this.checkBox}
                 />
+                    <input type = 'button'
+                           className={'deleteButton'}
+                           onChange={this.buttonDelete}
+                    />
                 </p>
         );
     }
