@@ -3,9 +3,6 @@ import * as ReactDOM from "react-dom";
 import {Item} from "../components/item";
 
 export class List extends React.Component {
-    constructor(props) {
-        super(props);
-    }
 
     render() {
         let data = this.props.data;
@@ -15,7 +12,8 @@ export class List extends React.Component {
                 return (
                     <div className={'item'}
                          key={index}>
-                        <Item data={item}/>
+                        <Item data={item}
+                        />
                     </div>
                 );
             })
