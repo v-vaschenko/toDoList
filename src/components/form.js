@@ -12,13 +12,11 @@ export class Form extends React.Component{
 
     handleChange(event) {
         this.setState({value: event.target.value});
-        event.preventDefault();
     }
 
-    handleSubmit(event) {
+    handleSubmit() {
         this.props.inputFunc(this.state.value);
         this.setState ({value : ''});
-        event.preventDefault();
     }
 
     render() {

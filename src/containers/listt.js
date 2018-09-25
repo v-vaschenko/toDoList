@@ -5,32 +5,26 @@ import {Item} from "../components/item";
 export class List extends React.Component {
     constructor(){
         super();
-
     }
     render() {
         let data = this.props.data;
-        let f = this.props.delFunc;
+        let del = this.props.delFunc;
+        let done = this.props.done;
+        let edit = this.props.editFunc;
         let toDOs;
-        if (this.props.data.length > 0) {
-            toDOs = data.map(function (item, index) {
-                return (
-                    <div className={'item'}
-                         key={index}>
-                        <Item data={item}
-                              id = {index}
-                              func = {f}
-                        />
-                    </div>
-                );
-            })
-        } else{
-            toDOs = <p> Nothing to Do! </p>
+        toDOs = data.map(function (item, index) {
             return (
-                <div className={'list'}>
-                    {toDOs}
-                </div>
+                <Item className={'item'+(data[index].status)}
+                      key={index}
+                      data={item}
+                      id = {index}
+                      status = {data[index].status}
+                      del = {del}
+                      edit = {edit}
+                      done = {done}
+                />
             );
-        }
+        })
         return(
             <div className={'list'}>
                 {toDOs}

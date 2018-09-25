@@ -1,36 +1,55 @@
 import React from 'react';
 import * as ReactDOM from "react-dom";
 
-export class Item extends React.Component{
-    constructor(props){
+export class Item extends React.Component {
+    constructor(props) {
         super(props);
-        this.state = {checkbox : false,
-                      undone : 'itemText',
-                      done : 'itemTextDone'
+        this.state = {
+            id : this.props.id,
+            data: this.props.data.text,
+            editable: true
         };
         this.checkBox = this.checkBox.bind(this);
-        this.buttonClick = this.buttonClick.bind(this);
+        this.delButton = this.delButton.bind(this);
+        this.enableEdit = this.enableEdit.bind(this);
+        this.editFunc = this.editFunc.bind(this);
     }
-    checkBox(){
-        this.setState({checkbox : !this.state.checkbox});
+
+    checkBox() {
+        this.props.done(this.props.id);
     }
-    buttonClick(){
-    this.props.func(this.props.id);
+
+   delButton() {
+        this.props.del(this.props.id);
     }
+
+    editFunc(e) {
+    this.props.edit (this.props.id, e.target.value);
+    }
+    enableEdit() {
+        this.setState ( {editable : ! this.state.editable});
+    }
+
     render() {
         let data = this.props.data.text;
         return (
-                <p className={ this.state.checkbox ? this.state.done : this.state.undone}
-                >
-                    {data}
-                <input type = 'checkbox'
+            <p onDoubleClick={this.enableEdit}
+            >
+                <input type="text"
+                       className={this.props.status ? 'itemTextDone' : 'itemText' }
+                       value={data}
+                       onChange={this.editFunc}
+                       disabled={this.state.editable}
+                />
+                <input type='checkbox'
+                       checked={this.state.status}
                        onChange={this.checkBox}
                 />
-                    <input type = 'button'
-                           className={'deleteButton'}
-                           onClick={this.buttonClick}
-                    />
-                </p>
+                <input type='button'
+                       className={'deleteButton'}
+                       onClick={this.delButton}
+                />
+            </p>
         );
     }
 }
