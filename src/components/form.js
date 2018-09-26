@@ -1,5 +1,4 @@
 import React from 'react';
-import * as ReactDOM from "react-dom";
 
 export class Form extends React.Component{
     constructor(props) {
@@ -30,6 +29,7 @@ export class Form extends React.Component{
                            value = {this.state.value}
                            onChange = {this.handleChange}
                            placeholder = {'Enter your ToDo'}
+                           autoFocus={true}
                     />
                 </label>
 

@@ -34,22 +34,24 @@ export class Filter extends React.Component {
         return (
             <div>
                 <a href='#'
-                   onClick={this.filterAll}
+                   onClick={ this.filterAll }
                 > Total:
                 </a>
-                <strong>{this.counter(true) + this.counter(false)} </strong>
+                <strong>{ this.counter(true) + this.counter(false) } </strong>
                 <a href='#'
-                   onClick={this.filterTrue}
+                   onClick={ this.filterTrue }
                 > Done:
-                </a> <strong>{this.counter(true)} </strong>
+                </a> <strong>{ this.counter(true) } </strong>
                 <a href='#'
-                   onClick={this.filterFalse}
+                   onClick={ this.filterFalse }
                 > Undone:
-                </a> <strong>{this.counter(false)} </strong>
+                </a> <strong>{ this.counter(false) } </strong>
+                <br/>
                 <a href='#'
-                   onClick={this.delAllDone}
+                   onClick={ this.delAllDone }
+                   className={'deleteDone'}
                 >
-                    Delete all done
+                    <strong>Delete all done</strong>
                 </a>
             </div>
         );

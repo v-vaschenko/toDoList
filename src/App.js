@@ -22,6 +22,7 @@ export class App extends Component {
     notifyAdd = () => toast("Item successfully added!");
     notifyEdit = () => toast("Item successfully edited");
     notifyStatus = () => toast("Status successfully changed");
+    notifyDelDone = () => toast("Done items cleared");
 
     constructor(props) {
         super(props);
@@ -37,7 +38,7 @@ export class App extends Component {
         this.delAllDone = this.delAllDone.bind(this);
     }
     inputForm(input) {
-        todoList.push({text : input, status : false, id : ((todoList[todoList.length-1].id +1))});
+        todoList.push({text : input, status : false, id : todoList.length == 0 ? 0 : ((todoList[todoList.length-1].id +1))});
         if (this.state.filter == 'none'){
             this.setState ({list : todoList});
         }
@@ -66,10 +67,12 @@ export class App extends Component {
             todoList[i].status == true ? arr.push(todoList[i].id) : null;
         }
         for (let i = 0 ; i < arr.length ; ++i){
-            this.deleteFunction(arr[i]);
+            let a = todoList.findIndex(x => x.id === arr[i]);
+            todoList.splice(a,1);
         }
         this.setState ({list : todoList});
         this.filterFunction(this.state.filter);
+        this.notifyDelDone();
 
     }
     editFunction(id, value) {
@@ -122,6 +125,7 @@ export class App extends Component {
                     <h1> ToDo list </h1>
                 </div>
                 <div className={'panel-body'}>
+                    <Form inputFunc={this.inputForm}/>
                     <List data={this.state.list}
                           delFunc={this.deleteFunction}
                           editFunc = {this.editFunction}
@@ -133,7 +137,6 @@ export class App extends Component {
                             filterTrue = {this.filterFunction}
                             delAllDone = {this.delAllDone}
                     />
-                    <Form inputFunc={this.inputForm}/>
                     <ToastContainer position = "top-center"
                                     autoClose = {1000}
                                     hideProgressBar = {false}
