@@ -5,9 +5,9 @@ export class Item extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            id : this.props.id,
             data: this.props.data.text,
-            editable: true
+            editable: true,
+            status : this.props.status
         };
         this.checkBox = this.checkBox.bind(this);
         this.delButton = this.delButton.bind(this);
@@ -42,7 +42,7 @@ export class Item extends React.Component {
                        disabled={this.state.editable}
                 />
                 <input type='checkbox'
-                       checked={this.state.status}
+                       checked={this.props.status}
                        onChange={this.checkBox}
                 />
                 <input type='button'

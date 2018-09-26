@@ -3,12 +3,13 @@ import * as ReactDOM from "react-dom";
 import {render} from "react-dom";
 
 export class Filter extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.counter=this.counter.bind(this);
         this.filterAll = this.filterAll.bind(this);
         this.filterFalse = this.filterFalse.bind(this);
         this.filterTrue = this.filterTrue.bind(this);
+        this.delAllDone = this.delAllDone.bind(this);
     }
     counter(param) {
         let data = this.props.data;
@@ -17,23 +18,26 @@ export class Filter extends React.Component {
         });
         return(count.length);
     }
-    filterAll(){
+    filterAll() {
         this.props.filterAll(0);
     }
-    filterFalse(){
+    filterFalse() {
         this.props.filterFalse(false);
     }
-    filterTrue(){
+    filterTrue() {
         this.props.filterTrue(true);
+    }
+    delAllDone() {
+        this.props.delAllDone();
     }
     render() {
         return (
             <div>
                 <a href='#'
                    onClick={this.filterAll}
-                > All:
+                > Total:
                 </a>
-                <strong>{this.props.data.length} </strong>
+                <strong>{this.counter(true) + this.counter(false)} </strong>
                 <a href='#'
                    onClick={this.filterTrue}
                 > Done:
@@ -42,6 +46,11 @@ export class Filter extends React.Component {
                    onClick={this.filterFalse}
                 > Undone:
                 </a> <strong>{this.counter(false)} </strong>
+                <a href='#'
+                   onClick={this.delAllDone}
+                >
+                    Delete all done
+                </a>
             </div>
         );
     }

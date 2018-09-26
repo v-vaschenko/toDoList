@@ -17,7 +17,8 @@ export class List extends React.Component {
                 <Item className={'item'+(data[index].status)}
                       key={index}
                       data={item}
-                      id = {index}
+                      index = {index}
+                      id = {data[index].id}
                       status = {data[index].status}
                       del = {del}
                       edit = {edit}
