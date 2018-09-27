@@ -1,5 +1,4 @@
 import React from 'react';
-import BottomNavigation from "@material-ui/core/BottomNavigation/BottomNavigation";
 
 export class Form extends React.Component {
     constructor(props) {
@@ -9,14 +8,25 @@ export class Form extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+
     handleChange(event) {
-        this.setState({value: event.target.value});
+        let a = event.target.value;
+        a = a.replace(/^\s+/g, '');
+        this.setState({value: a});
+
     }
 
-    handleSubmit() {
-        this.props.inputFunc(this.state.value);
+    handleSubmit(event) {
+        if (this.state.value === ''){
+            alert('Empty form!');
+        }
+        else{
+            this.props.inputFunc(this.state.value);
+            this.setState({value: ''});
+        }
         this.setState({value: ''});
     }
+
 
     render() {
         return (
@@ -28,9 +38,11 @@ export class Form extends React.Component {
                        onChange={this.handleChange}
                        placeholder={'Enter your ToDo'}
                        autoFocus={true}
+                       id={'msg'}
                 />
             </form>
 
-        );
+
+    );
     }
 }

@@ -1,20 +1,14 @@
 import React from 'react';
-import * as ReactDOM from "react-dom";
-import {render} from "react-dom";
-import Icon from '@material-ui/core/Icon';
 import DeleteIcon from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
-import {withStyles} from '@material-ui/core/styles';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
+import Button from '@material-ui/core/Button';
+import { withStyles } from '@material-ui/core/styles';
 
-const options = [
-    'Done',
-    'Undone'
-];
-
-const ITEM_HEIGHT = 48;
+const styles = theme => ({
+    button: {
+        margin: theme.spacing.unit,
+    },
+});
 
 export class Filter extends React.Component {
     constructor(props) {
@@ -24,13 +18,12 @@ export class Filter extends React.Component {
         this.filterFalse = this.filterFalse.bind(this);
         this.filterTrue = this.filterTrue.bind(this);
         this.delAllDone = this.delAllDone.bind(this);
-        this.state = {anchorEl: null};
     }
 
     counter(param) {
         let data = this.props.data;
         let count = data.filter(function (index) {
-            return index.status == param;
+            return index.status === param;
         });
         return (count.length);
     }
@@ -50,53 +43,48 @@ export class Filter extends React.Component {
     delAllDone() {
         this.props.delAllDone();
     }
-
-    handleClick = event => {
-        this.setState({anchorEl: event.currentTarget});
-    };
-
-    handleClose = () => {
-        this.setState({anchorEl: null});
-    };
-
     render() {
-        const {anchorEl} = this.state;
-        const open = Boolean(anchorEl);
+        const { classes } = this.props;
         return (
-            <div className='filter'>
-                <div className={'filterMenu'}>
-                    <IconButton
-                        aria-owns={anchorEl ? 'simple-menu' : null}
-                        aria-haspopup="true"
-                        onClick={this.handleClick}
-                    >
-                        <MoreVertIcon/>
-                    </IconButton>
-                    <Menu
-                        id="simple-menu"
-                        anchorEl={anchorEl}
-                        open={Boolean(anchorEl)}
-                        onClose={this.handleClose}
-                    >
-                        <MenuItem onClick={this.filterAll}>All</MenuItem>
-                        <MenuItem onClick={this.filterTrue}>Done</MenuItem>
-                        <MenuItem onClick={this.filterFalse}>Not Done</MenuItem>
-                    </Menu>
-                </div>
-                <div className={'counter'}>
+            <div className='filter col row'>
+                <Button variant="contained"
+                        size="small"
+                        color="secondary"
+                        className={'col'}
+                        onClick = {this.filterAll}
+                >
+                    Show All
+                </Button>
+                <Button variant="contained"
+                        size="medium"
+                        color="primary"
+                        className={'col'}
+                        onClick = {this.filterFalse}
+                >
+                    Show ToDo
+                </Button>
+                <Button variant="contained"
+                        size="small"
+                        color="default"
+                        className={'col'}
+                        onClick={this.filterTrue}
+                >
+                    Show Done
+                </Button>
+                <div className={'counter col'}>
                     <span> Total:
-                        <strong>{this.counter(true) + this.counter(false)}</strong>
+                        <strong>{this.counter(true) + this.counter(false)}</strong><br/>
                     </span>
                     <span> Done:
-                        <strong>{this.counter(true)} </strong>
+                        <strong>{this.counter(true)} </strong><br/>
                     </span>
                     <span> Undone:
-                        <strong>{this.counter(false)} </strong>
+                        <strong>{this.counter(false)} </strong><br/>
                     </span>
                 </div>
                 <IconButton variant="fab"
                             color={'secondary'}
-                            className={'deleteDone'}
+                            className={'deleteDone col'}
                             onClick={this.delAllDone}
                 >
                     <DeleteIcon/>

@@ -37,9 +37,6 @@ export class Item extends React.Component {
 
     enableEdit() {
         this.setState({editable: !this.state.editable});
-        let textbox = document.getElementById(this.props.index);
-        textbox.focus();
-        textbox.scrollIntoView();
     }
 
     render() {

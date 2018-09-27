@@ -1,12 +1,7 @@
 import React from 'react';
-import * as ReactDOM from "react-dom";
 import {Item} from "../components/item";
 
 export class List extends React.Component {
-    constructor() {
-        super();
-    }
-
     render() {
         let data = this.props.data;
         let del = this.props.delFunc;

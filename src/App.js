@@ -23,6 +23,8 @@ export class App extends Component {
     notifyEdit = () => toast("Item successfully edited");
     notifyStatus = () => toast("Status successfully changed");
     notifyDelDone = () => toast("Done items cleared");
+    notifyEmpty = () => toast("Form is Empty!");
+
 
     constructor(props) {
         super(props);
@@ -43,9 +45,9 @@ export class App extends Component {
         todoList.push({
             text: input,
             status: false,
-            id: todoList.length == 0 ? 0 : ((todoList[todoList.length - 1].id + 1))
+            id: todoList.length === 0 ? 0 : ((todoList[todoList.length - 1].id + 1))
         });
-        if (this.state.filter == 'none') {
+        if (this.state.filter === 'none') {
             this.setState({list: todoList});
         }
         else {
@@ -58,7 +60,7 @@ export class App extends Component {
     deleteFunction(id) {
         let a = todoList.findIndex(x => x.id === id);
         todoList.splice(a, 1);
-        if (this.state.filter == 'none') {
+        if (this.state.filter === 'none') {
             this.setState({list: todoList});
         }
         else {
@@ -71,7 +73,7 @@ export class App extends Component {
     delAllDone() {
         let arr = [];
         for (let i = 0; i < todoList.length; ++i) {
-            todoList[i].status == true ? arr.push(todoList[i].id) : null;
+            todoList[i].status === true ? arr.push(todoList[i].id) : null;
         }
         for (let i = 0; i < arr.length; ++i) {
             let a = todoList.findIndex(x => x.id === arr[i]);
@@ -86,7 +88,7 @@ export class App extends Component {
     editFunction(id, value) {
         let a = todoList.findIndex(x => x.id === id);
         todoList[a].text = value;
-        if (this.state.filter == 'none') {
+        if (this.state.filter === 'none') {
             this.setState({list: todoList});
         }
         else {
@@ -100,7 +102,7 @@ export class App extends Component {
         let a = todoList.findIndex(x => x.id === id);
         let status = todoList[a].status;
         todoList[a].status = !status;
-        if (this.state.filter == 'none') {
+        if (this.state.filter === 'none') {
             this.setState({list: todoList});
         }
         else {
@@ -111,12 +113,12 @@ export class App extends Component {
     }
 
     filterFunction(param) {
-        if (param == 'none') {
+        if (param === 'none') {
             return (null);
         }
         else {
             listFiltered = todoList.filter(function (index) {
-                return index.status == param;
+                return index.status === param;
             });
             this.setState({list: listFiltered});
             this.setState({filter: param});
@@ -131,12 +133,14 @@ export class App extends Component {
     render() {
 
         return (
-            <div className={'app col-6'}>
+            <div className={'app container-fluid justify-content-md-center col-md-5'}>
                 <div className={'panel-heading'}>
                     <h1> ToDo list </h1>
                 </div>
                 <div className={'panel-body'}>
-                    <Form inputFunc={this.inputForm}/>
+                    <Form inputFunc={this.inputForm}
+                          note = {this.notifyEmpty}
+                    />
                     <List data={this.state.list}
                           delFunc={this.deleteFunction}
                           editFunc={this.editFunction}

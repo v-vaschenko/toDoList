@@ -9,6 +9,8 @@
   text-decoration: line-through;
 }
 .deleteDone {
+  height: 50px;
+  width: 50px;
 }
 .item {
   width: 90%;
@@ -48,10 +50,6 @@ h1{
   margin: 0px;
 }
 .filter{
-  justify-content:space-between;
-  display: flex;
-  line-height: 3em;
-}
-.app{
-  width: ;
+  padding: 10px;
+  margin: 0px;
 }
