@@ -3,9 +3,10 @@ import * as ReactDOM from "react-dom";
 import {Item} from "../components/item";
 
 export class List extends React.Component {
-    constructor(){
+    constructor() {
         super();
     }
+
     render() {
         let data = this.props.data;
         let del = this.props.delFunc;
@@ -14,19 +15,19 @@ export class List extends React.Component {
         let toDOs;
         toDOs = data.map(function (item, index) {
             return (
-                <Item className={'item'+(data[index].status)}
+                <Item className={'item' + (data[index].status)}
                       key={index}
                       data={item}
-                      index = {index}
-                      id = {data[index].id}
-                      status = {data[index].status}
-                      del = {del}
-                      edit = {edit}
-                      done = {done}
+                      index={index}
+                      id={data[index].id}
+                      status={data[index].status}
+                      del={del}
+                      edit={edit}
+                      done={done}
                 />
             );
         })
-        return(
+        return (
             <div className={'list'}>
                 {toDOs}
             </div>

@@ -4,16 +4,16 @@ import {List} from './containers/listt';
 import {Form} from './components/form';
 import * as ReactDOM from "react-dom";
 import {Filter} from "./components/filter";
-import { ToastContainer, toast } from 'react-toastify';
+import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 let todoList = [
-    {text : '111111111111111111111', status : true, id : 0},
-    {text : '222222222222222222222', status : true, id : 1},
-    {text : '333333333333333333333', status : true, id : 2},
-    {text : '444444444444444444444', status : false, id : 3},
-    {text : '555555555555555555555', status : false, id : 4},
-    {text : '666666666666666666666', status : false, id : 5}
+    {text: '111111111111111111111', status: true, id: 0},
+    {text: '222222222222222222222', status: true, id: 1},
+    {text: '333333333333333333333', status: true, id: 2},
+    {text: '444444444444444444444', status: false, id: 3},
+    {text: '555555555555555555555', status: false, id: 4},
+    {text: '666666666666666666666', status: false, id: 5}
 ];
 let listFiltered = [];
 
@@ -26,8 +26,9 @@ export class App extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {list: todoList,
-                      filter: 'none'
+        this.state = {
+            list: todoList,
+            filter: 'none'
         };
         this.inputForm = this.inputForm.bind(this);
         this.deleteFunction = this.deleteFunction.bind(this);
@@ -37,71 +38,80 @@ export class App extends Component {
         this.filterFunctionAll = this.filterFunctionAll.bind(this);
         this.delAllDone = this.delAllDone.bind(this);
     }
+
     inputForm(input) {
-        todoList.push({text : input, status : false, id : todoList.length == 0 ? 0 : ((todoList[todoList.length-1].id +1))});
-        if (this.state.filter == 'none'){
-            this.setState ({list : todoList});
+        todoList.push({
+            text: input,
+            status: false,
+            id: todoList.length == 0 ? 0 : ((todoList[todoList.length - 1].id + 1))
+        });
+        if (this.state.filter == 'none') {
+            this.setState({list: todoList});
         }
-        else{
-            this.setState ({list : listFiltered});
+        else {
+            this.setState({list: listFiltered});
         }
         this.filterFunction(this.state.filter);
         this.notifyAdd();
     }
 
     deleteFunction(id) {
-       let a = todoList.findIndex(x => x.id === id);
-       todoList.splice(a,1);
-        if (this.state.filter == 'none'){
-            this.setState ({list : todoList});
+        let a = todoList.findIndex(x => x.id === id);
+        todoList.splice(a, 1);
+        if (this.state.filter == 'none') {
+            this.setState({list: todoList});
         }
-        else{
-            this.setState ({list : listFiltered});
+        else {
+            this.setState({list: listFiltered});
         }
         this.filterFunction(this.state.filter);
         this.notifyDelete();
     }
-    delAllDone(){
+
+    delAllDone() {
         let arr = [];
-        for (let i = 0 ; i < todoList.length; ++i){
+        for (let i = 0; i < todoList.length; ++i) {
             todoList[i].status == true ? arr.push(todoList[i].id) : null;
         }
-        for (let i = 0 ; i < arr.length ; ++i){
+        for (let i = 0; i < arr.length; ++i) {
             let a = todoList.findIndex(x => x.id === arr[i]);
-            todoList.splice(a,1);
+            todoList.splice(a, 1);
         }
-        this.setState ({list : todoList});
+        this.setState({list: todoList});
         this.filterFunction(this.state.filter);
         this.notifyDelDone();
 
     }
+
     editFunction(id, value) {
         let a = todoList.findIndex(x => x.id === id);
         todoList[a].text = value;
-        if (this.state.filter == 'none'){
-            this.setState ({list : todoList});
+        if (this.state.filter == 'none') {
+            this.setState({list: todoList});
         }
-        else{
-            this.setState ({list : listFiltered});
+        else {
+            this.setState({list: listFiltered});
         }
         this.filterFunction(this.state.filter);
         this.notifyEdit;
     }
-    statusChange(id){
+
+    statusChange(id) {
         let a = todoList.findIndex(x => x.id === id);
         let status = todoList[a].status;
         todoList[a].status = !status;
-        if (this.state.filter == 'none'){
-            this.setState ({list : todoList});
+        if (this.state.filter == 'none') {
+            this.setState({list: todoList});
         }
-        else{
-            this.setState ({list : listFiltered});
+        else {
+            this.setState({list: listFiltered});
         }
         this.filterFunction(this.state.filter);
         this.notifyStatus();
     }
-    filterFunction(param){
-        if (param == 'none'){
+
+    filterFunction(param) {
+        if (param == 'none') {
             return (null);
         }
         else {
@@ -112,9 +122,10 @@ export class App extends Component {
             this.setState({filter: param});
         }
     }
-    filterFunctionAll(){
-        this.setState ({list: todoList});
-        this.setState({filter : 'none'});
+
+    filterFunctionAll() {
+        this.setState({list: todoList});
+        this.setState({filter: 'none'});
     }
 
     render() {
@@ -128,21 +139,21 @@ export class App extends Component {
                     <Form inputFunc={this.inputForm}/>
                     <List data={this.state.list}
                           delFunc={this.deleteFunction}
-                          editFunc = {this.editFunction}
-                          done = {this.statusChange}
+                          editFunc={this.editFunction}
+                          done={this.statusChange}
                     />
-                    <Filter data = {todoList}
-                            filterAll = {this.filterFunctionAll}
-                            filterFalse = {this.filterFunction}
-                            filterTrue = {this.filterFunction}
-                            delAllDone = {this.delAllDone}
+                    <Filter data={todoList}
+                            filterAll={this.filterFunctionAll}
+                            filterFalse={this.filterFunction}
+                            filterTrue={this.filterFunction}
+                            delAllDone={this.delAllDone}
                     />
-                    <ToastContainer position = "top-right"
-                                    autoClose = {1000}
-                                    hideProgressBar = {false}
-                                    newestOnTop = {false}
+                    <ToastContainer position="top-right"
+                                    autoClose={1000}
+                                    hideProgressBar={false}
+                                    newestOnTop={false}
                                     closeOnClick
-                                    rtl = {false}
+                                    rtl={false}
                                     pauseOnVisibilityChange
                                     draggable
                                     pauseOnHover

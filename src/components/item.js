@@ -1,23 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import green from '@material-ui/core/colors/green';
-import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
-import CheckBoxIcon from '@material-ui/icons/CheckBox';
-import Favorite from '@material-ui/icons/Favorite';
-import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
-import Button from '@material-ui/core/Button';
-import AddIcon from '@material-ui/icons/Add';
-import Icon from '@material-ui/core/Icon';
 import DeleteIcon from '@material-ui/icons/Delete';
-import NavigationIcon from '@material-ui/icons/Navigation';
 import EditIcon from '@material-ui/icons/Edit';
 import IconButton from '@material-ui/core/IconButton';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
 import TextField from '@material-ui/core/TextField';
 
 
@@ -28,7 +15,7 @@ export class Item extends React.Component {
         this.state = {
             data: this.props.data.text,
             editable: true,
-            status : this.props.status
+            status: this.props.status
         };
         this.checkBox = this.checkBox.bind(this);
         this.delButton = this.delButton.bind(this);
@@ -40,15 +27,19 @@ export class Item extends React.Component {
         this.props.done(this.props.id);
     }
 
-   delButton() {
+    delButton() {
         this.props.del(this.props.id);
     }
 
     editFunc(e) {
-    this.props.edit (this.props.id, e.target.value);
+        this.props.edit(this.props.id, e.target.value);
     }
+
     enableEdit() {
-        this.setState ( {editable : ! this.state.editable});
+        this.setState({editable: !this.state.editable});
+        let textbox = document.getElementById(this.props.index);
+        textbox.focus();
+        textbox.scrollIntoView();
     }
 
     render() {
@@ -67,24 +58,25 @@ export class Item extends React.Component {
                         />
                     }
                 />
-                <TextField className={this.props.status ? 'itemTextDone' : 'itemText' }
-                           type = 'text'
+                <TextField className={this.props.status ? 'itemTextDone' : 'itemText'}
+                           type='text'
                            value={data}
                            onChange={this.editFunc}
                            disabled={this.state.editable}
-                           autoFocus={true}
+                           multiline={true}
+                           rowsMax={5}
                 />
                 <IconButton variant="fab"
-                        className={'deleteButton'}
-                        onClick={this.delButton}
+                            className={'deleteButton'}
+                            onClick={this.delButton}
                 >
-                    <DeleteIcon />
+                    <DeleteIcon/>
                 </IconButton>
                 <IconButton variant="fab"
-                        color="primary"
-                        aria-label="Edit"
-                        className = {'editButton'}
-                        onClick = {this.enableEdit}
+                            color="primary"
+                            aria-label="Edit"
+                            className={'editButton'}
+                            onClick={this.enableEdit}
                 >
                     <EditIcon/>
                 </IconButton>
