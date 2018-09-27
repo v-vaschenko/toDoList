@@ -1,0 +1,57 @@
+%items{
+  width: 80%;
+}
+.itemText{
+  @extend %items;
+}
+.itemTextDone{
+  @extend %items;
+  text-decoration: line-through;
+}
+.deleteDone {
+}
+.item {
+  width: 90%;
+  background-color: beige;
+}
+.panel-body{
+  background-color: silver;
+  padding: 0px;
+}
+.list{
+  width: 98%;
+  margin: auto;
+  background-color: beige;
+  border-radius: 10px;
+}
+.form-group{
+  width: 98%;
+  margin: auto auto 15px;
+
+}
+.form-control{
+  min-height: 50px;
+}
+.panel-heading{
+  margin-bottom: 0px;
+  text-align: center;
+  background-color: silver;
+}
+h1{
+  margin: 0px;
+}
+.filterMenu{
+  width: 50px;
+  margin: 0px;
+}
+.counter {
+  margin: 0px;
+}
+.filter{
+  justify-content:space-between;
+  display: flex;
+  line-height: 3em;
+}
+.app{
+  width: ;
+}

@@ -1,10 +1,10 @@
 import React from 'react';
+import BottomNavigation from "@material-ui/core/BottomNavigation/BottomNavigation";
 
 export class Form extends React.Component{
     constructor(props) {
         super(props);
         this.state = {value: ''};
-
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -22,8 +22,6 @@ export class Form extends React.Component{
         return (
             <form className = { 'form-group' }
                   onSubmit={this.handleSubmit}>
-
-                <label>
                     <input type = "text"
                            className={'form-control'}
                            value = {this.state.value}
@@ -31,14 +29,8 @@ export class Form extends React.Component{
                            placeholder = {'Enter your ToDo'}
                            autoFocus={true}
                     />
-                </label>
+                </form>
 
-                <input type = "submit"
-                       className={'btn btn-primary'}
-                       value = "Submit"
-                       disabled={!this.state.value}
-                />
-            </form>
         );
     }
 }

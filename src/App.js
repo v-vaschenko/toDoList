@@ -120,7 +120,7 @@ export class App extends Component {
     render() {
 
         return (
-            <div className={'app container-fluid'}>
+            <div className={'app col-6'}>
                 <div className={'panel-heading'}>
                     <h1> ToDo list </h1>
                 </div>
@@ -131,13 +131,13 @@ export class App extends Component {
                           editFunc = {this.editFunction}
                           done = {this.statusChange}
                     />
-                    <Filter data = {this.state.list}
+                    <Filter data = {todoList}
                             filterAll = {this.filterFunctionAll}
                             filterFalse = {this.filterFunction}
                             filterTrue = {this.filterFunction}
                             delAllDone = {this.delAllDone}
                     />
-                    <ToastContainer position = "top-center"
+                    <ToastContainer position = "top-right"
                                     autoClose = {1000}
                                     hideProgressBar = {false}
                                     newestOnTop = {false}

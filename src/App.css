@@ -1,58 +1,60 @@
-body {
-  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-  font-size: 14px;
-  line-height: 1.42857143;
-  color: #333;
-  background-color: #fff;
-  padding : 10px;
+.itemTextDone, .itemText {
+  width: 80%;
 }
-.panel-heading {
-  padding: 10px 15px;
-  border-top-right-radius: 10px;
-  border-top-left-radius: 10px;
-  color: #fff;
-  background-color: #428bca;
-  border-color: #428bca;
-  text-align: center;
-}
-.panel-body {
-  min-height: 300px;
-  width: 100%;
-  text-align: center;
-  border: 3px solid #428bca;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
-  position: relative;
-  padding-top: 30px;
-}
-.container-fluid{
-  border: #428bca;
-  border-width: 10px;
-  border-radius: 10px;
-}
-.list{
-  min-height: 250px;
-}
-.item:hover{
-  background-color: #d1e0e0;
-}
-.item{
-  width: 90%;
-  margin-right: auto;
-  margin-left: auto;
-}
-.btn{
-  margin-left: 10px;
-}
-.itemText{
-  color: black;
-}
-.itemTextDone{
+
+.itemTextDone {
   text-decoration: line-through;
 }
-.deleteButton{
-  width: 16px;
-  height: 16px;
-  background: url("./img/deleteIcon.png");
-  border: none;
+
+.item {
+  width: 90%;
+  background-color: beige;
 }
+
+.panel-body {
+  background-color: silver;
+  padding: 0px;
+}
+
+.list {
+  width: 98%;
+  margin: auto;
+  background-color: beige;
+  border-radius: 10px;
+}
+
+.form-group {
+  width: 98%;
+  margin: auto auto 15px;
+}
+
+.form-control {
+  min-height: 50px;
+}
+
+.panel-heading {
+  margin-bottom: 0px;
+  text-align: center;
+  background-color: silver;
+}
+
+h1 {
+  margin: 0px;
+}
+
+.filterMenu {
+  width: 50px;
+  margin: 0px;
+}
+
+.counter {
+  margin: 0px;
+}
+
+.filter {
+  justify-content: space-between;
+  display: flex;
+  line-height: 3em;
+}
+
+/*# sourceMappingURL=App.css.map */

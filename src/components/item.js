@@ -1,7 +1,28 @@
 import React from 'react';
-import * as ReactDOM from "react-dom";
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import green from '@material-ui/core/colors/green';
+import FormGroup from '@material-ui/core/FormGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
+import CheckBoxIcon from '@material-ui/icons/CheckBox';
+import Favorite from '@material-ui/icons/Favorite';
+import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
+import Button from '@material-ui/core/Button';
+import AddIcon from '@material-ui/icons/Add';
+import Icon from '@material-ui/core/Icon';
+import DeleteIcon from '@material-ui/icons/Delete';
+import NavigationIcon from '@material-ui/icons/Navigation';
+import EditIcon from '@material-ui/icons/Edit';
+import IconButton from '@material-ui/core/IconButton';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import TextField from '@material-ui/core/TextField';
+
 
 export class Item extends React.Component {
+
     constructor(props) {
         super(props);
         this.state = {
@@ -31,25 +52,46 @@ export class Item extends React.Component {
     }
 
     render() {
+
         let data = this.props.data.text;
         return (
-            <p onDoubleClick={this.enableEdit}
+            <ListItem className={'item'}
+                      button={true}
             >
-                <input type="text"
-                       className={this.props.status ? 'itemTextDone' : 'itemText' }
-                       value={data}
-                       onChange={this.editFunc}
-                       disabled={this.state.editable}
+                <FormControlLabel
+                    control={
+                        <Checkbox
+                            checked={this.props.status}
+                            onChange={this.checkBox}
+                            color="primary"
+                        />
+                    }
                 />
-                <input type='checkbox'
-                       checked={this.props.status}
-                       onChange={this.checkBox}
+                <TextField className={this.props.status ? 'itemTextDone' : 'itemText' }
+                           type = 'text'
+                           value={data}
+                           onChange={this.editFunc}
+                           disabled={this.state.editable}
+                           autoFocus={true}
                 />
-                <input type='button'
-                       className={'deleteButton'}
-                       onClick={this.delButton}
-                />
-            </p>
+                <IconButton variant="fab"
+                        className={'deleteButton'}
+                        onClick={this.delButton}
+                >
+                    <DeleteIcon />
+                </IconButton>
+                <IconButton variant="fab"
+                        color="primary"
+                        aria-label="Edit"
+                        className = {'editButton'}
+                        onClick = {this.enableEdit}
+                >
+                    <EditIcon/>
+                </IconButton>
+
+            </ListItem>
+
+
         );
     }
 }
