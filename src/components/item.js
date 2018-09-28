@@ -21,6 +21,7 @@ export class Item extends React.Component {
         this.delButton = this.delButton.bind(this);
         this.enableEdit = this.enableEdit.bind(this);
         this.editFunc = this.editFunc.bind(this);
+        this.disableEdit = this.disableEdit.bind(this);
     }
 
     checkBox() {
@@ -37,6 +38,9 @@ export class Item extends React.Component {
 
     enableEdit() {
         this.setState({editable: !this.state.editable});
+    }
+    disableEdit(){
+        this.setState({editable : true});
     }
 
     render() {
@@ -60,6 +64,7 @@ export class Item extends React.Component {
                            value={data}
                            onChange={this.editFunc}
                            disabled={this.state.editable}
+                           onDoubleClick = {this.disableEdit}
                            multiline={true}
                            rowsMax={5}
                 />

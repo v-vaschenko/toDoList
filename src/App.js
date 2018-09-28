@@ -20,7 +20,7 @@ let listFiltered = [];
 export class App extends Component {
     notifyDelete = () => toast("Item successfully deleted");
     notifyAdd = () => toast("Item successfully added!");
-    notifyEdit = () => toast("Item successfully edited");
+    //notifyEdit = () => toast("Item successfully edited");
     notifyStatus = () => toast("Status successfully changed");
     notifyDelDone = () => toast("Done items cleared");
     notifyEmpty = () => toast("Form is Empty!");
@@ -37,7 +37,6 @@ export class App extends Component {
         this.editFunction = this.editFunction.bind(this);
         this.statusChange = this.statusChange.bind(this);
         this.filterFunction = this.filterFunction.bind(this);
-        this.filterFunctionAll = this.filterFunctionAll.bind(this);
         this.delAllDone = this.delAllDone.bind(this);
     }
 
@@ -47,13 +46,8 @@ export class App extends Component {
             status: false,
             id: todoList.length === 0 ? 0 : ((todoList[todoList.length - 1].id + 1))
         });
-        if (this.state.filter === 'none') {
-            this.setState({list: todoList});
-        }
-        else {
-            this.setState({list: listFiltered});
-        }
         this.filterFunction(this.state.filter);
+        this.state.filter === 'none' ? this.setState({list : todoList}) : this.setState({list : listFiltered});
         this.notifyAdd();
     }
 
@@ -95,7 +89,7 @@ export class App extends Component {
             this.setState({list: listFiltered});
         }
         this.filterFunction(this.state.filter);
-        this.notifyEdit;
+        //this.notifyEdit();
     }
 
     statusChange(id) {
@@ -114,20 +108,19 @@ export class App extends Component {
 
     filterFunction(param) {
         if (param === 'none') {
-            return (null);
+            this.setState({list: todoList});
+            this.setState({filter: 'none'});
+            console.log('ALL');
         }
         else {
             listFiltered = todoList.filter(function (index) {
                 return index.status === param;
+                this.setState({list : listFiltered});
+                this.setState({filter: param});
             });
-            this.setState({list: listFiltered});
+            this.setState({list : listFiltered});
             this.setState({filter: param});
         }
-    }
-
-    filterFunctionAll() {
-        this.setState({list: todoList});
-        this.setState({filter: 'none'});
     }
 
     render() {
@@ -147,10 +140,8 @@ export class App extends Component {
                           done={this.statusChange}
                     />
                     <Filter data={todoList}
-                            filterAll={this.filterFunctionAll}
-                            filterFalse={this.filterFunction}
-                            filterTrue={this.filterFunction}
-                            delAllDone={this.delAllDone}
+                            filter={this.filterFunction}
+                            delAllDone = {this.delAllDone}
                     />
                     <ToastContainer position="top-right"
                                     autoClose={1000}

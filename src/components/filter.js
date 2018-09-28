@@ -14,10 +14,10 @@ export class Filter extends React.Component {
     constructor(props) {
         super(props);
         this.counter = this.counter.bind(this);
-        this.filterAll = this.filterAll.bind(this);
-        this.filterFalse = this.filterFalse.bind(this);
-        this.filterTrue = this.filterTrue.bind(this);
         this.delAllDone = this.delAllDone.bind(this);
+        this.filterAll= this.filterAll.bind(this);
+        this.filterTrue = this.filterTrue.bind(this);
+        this.filterFalse = this.filterFalse.bind(this);
     }
 
     counter(param) {
@@ -28,20 +28,17 @@ export class Filter extends React.Component {
         return (count.length);
     }
 
-    filterAll() {
-        this.props.filterAll(0);
-    }
-
-    filterFalse() {
-        this.props.filterFalse(false);
-    }
-
-    filterTrue() {
-        this.props.filterTrue(true);
-    }
-
     delAllDone() {
         this.props.delAllDone();
+    }
+    filterAll(){
+        this.props.filter('none');
+    }
+    filterTrue(){
+        this.props.filter(true);
+    }
+    filterFalse(){
+        this.props.filter(false);
     }
     render() {
         const { classes } = this.props;
