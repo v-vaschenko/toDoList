@@ -110,7 +110,6 @@ export class App extends Component {
         if (param === 'none') {
             this.setState({list: todoList});
             this.setState({filter: 'none'});
-            console.log('ALL');
         }
         else {
             listFiltered = todoList.filter(function (index) {

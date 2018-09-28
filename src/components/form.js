@@ -13,8 +13,6 @@ export class Form extends React.Component {
         let a = event.target.value;
         a = a.replace(/^\s+/g, '');
         this.setState({value: a});
-        console.log(this.state.value);
-
     }
 
     handleSubmit(event) {
@@ -32,7 +30,9 @@ export class Form extends React.Component {
     render() {
         return (
             <form className={'form-group'}
-                  onSubmit={this.handleSubmit}>
+                  onSubmit={this.handleSubmit}
+                  autoComplete='off'
+            >
                 <input type="text"
                        className={'form-control'}
                        value={this.state.value}
@@ -40,6 +40,7 @@ export class Form extends React.Component {
                        placeholder={'Enter your ToDo'}
                        autoFocus={true}
                        id={'msg'}
+                       autoComplete='off'
                 />
             </form>
 

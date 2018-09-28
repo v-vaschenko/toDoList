@@ -2,13 +2,6 @@ import React from 'react';
 import DeleteIcon from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
 import Button from '@material-ui/core/Button';
-import { withStyles } from '@material-ui/core/styles';
-
-const styles = theme => ({
-    button: {
-        margin: theme.spacing.unit,
-    },
-});
 
 export class Filter extends React.Component {
     constructor(props) {

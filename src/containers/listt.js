@@ -24,6 +24,7 @@ export class List extends React.Component {
         })
         return (
             <div className={'list'}>
+                <div className={'item'}> </div>
                 {toDOs}
             </div>
         )
